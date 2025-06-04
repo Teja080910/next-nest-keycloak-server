@@ -15,8 +15,8 @@ export class Message {
   category: string;
 
   @Column()
-  description: string;
+  content: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({default: () => 'CURRENT_TIMESTAMP'})
   createdAt: Date;
 }

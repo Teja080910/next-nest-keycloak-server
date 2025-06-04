@@ -15,7 +15,7 @@ export class NotesService {
         return this.notesRepository.save(newNotes);
     }
 
-    async findAll(): Promise<Message[]> {
-        return this.notesRepository.find();
+    async findAll(userId: string): Promise<Message[]> {
+        return this.notesRepository.find({ where: { userId } });
     }
 }
