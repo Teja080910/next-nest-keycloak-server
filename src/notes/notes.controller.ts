@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { Message } from '../types/notes.types';
 import { NotesService } from './notes.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('notes')
+@UseGuards(JwtAuthGuard)
 export class NotesController {
     constructor(private notesService: NotesService) {}
 
@@ -12,7 +14,7 @@ export class NotesController {
     }
 
     @Get(':id')
-    findAll(@Param('id') userId: string): Promise<Message[]> {
+    findAll(@Param('id') userId: string, @Req() req): Promise<Message[]> {
         return this.notesService.findAll(userId);
     }
 }

@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import { Message } from './types/notes.types';
+import { AuthModule } from './auth/auth.module';
 
 config();
 
@@ -22,6 +23,7 @@ config();
       synchronize: true, // DO NOT use true in production
     }),
     TypeOrmModule.forFeature([Message]),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
